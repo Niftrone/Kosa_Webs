@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script>
+$(function(){
+    $("#serverSend").on('click', function() {
+        //비동기 통신 연결
+        $.ajax({
+            //요청
+            type: 'get',
+            url: 'http://localhost:8080/weather.xml', //Root
+            dataType: 'xml', //응답되는 데이터의 타입을 미리 지정
+            //응답
+            success: function(data) {
+                alert(data)
+            }//callback
+        });
+
+    });
+});
+</script>
+</head>
+<body>
+<div calss="container">
+    <div class="jumbotron text-center">
+        <h2>====== Open API Weather 데이터 가져오기 ======</h2>
+    </div>
+</div>
+<p><a href="#" id="serverSend"><b>XML 데이터 요청하기</b></a></p>
+</body>
+</html>

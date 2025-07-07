@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+C:\KosaEdu\work05_web2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1123148082.index
+1487430619.index
+1618219116.index
+2260057013.index
+1809072141.index
+3194821366.index
+3588074910.index
+2799562764.index

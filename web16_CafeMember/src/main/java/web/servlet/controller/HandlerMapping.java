@@ -31,6 +31,9 @@ public class HandlerMapping {
 		 }else if(command.equals("update.do")) {
 			 controller = new UpdateController();
 			 System.out.println("UpdateController...생성...");
+		 }else if(command.equals("idExist.do")) {
+			 controller = new IdExistController();
+			 System.out.println("IdExistController...생성...");
 		 }
 		 return controller;
 	 } 

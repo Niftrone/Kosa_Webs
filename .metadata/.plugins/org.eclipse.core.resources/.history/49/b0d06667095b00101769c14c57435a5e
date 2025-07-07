@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	h2{
+		text-align: center;
+		color: purple;
+	}
+	#wrap{
+		margin-left: 220px;		
+	}
+</style>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(function(){
+	$('#idCheck').on('click', function(){
+		let userId = $('#id').val();
+		$.ajax({
+			// 요청
+			type: 'post',
+			url: 'idExist.do',
+			data: {'id': userId},
+
+			success: function(data){
+				alert(data)
+				if(data.exists === true){
+					$('#resultView').html("<span style='color: crimson;'>사용불가</span>");
+				} else {
+					$('#resultView').html("<span style='color: blue;'>사용가능</span>");
+				}
+			},
+			error: function(xhr, status, error){
+
+				$('#resultView').html("<span style='color: red;'>오류 발생: " + error + "</span>");
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+<h2>REGISTER MEMBER FORM</h2>
+<div id="wrap">
+	<form action="register.do" method="post">
+	
+		ID <input type="text" id="id" name="id" required="required">
+		<input type="button" value="중복확인" id="idCheck"/>
+		<span id="resultView"></span><br><br>
+		PASS <input type="password" name="password" required="required"><br><br>
+		NAME <input type="text" name="name"><br><br>
+		ADDR <input type="text" name="address"><br><br>
+		<input type="submit" value="REGISTER">		
+	</form>
+</div>
+</body>
+</html>

@@ -20,6 +20,9 @@ public interface MemberDAO {
 	
 	//update 추가
 	void updateMember(Member vo) throws SQLException;
+	
+	//idExist 추가
+	boolean idExist(String id) throws SQLException;
 }
 
 

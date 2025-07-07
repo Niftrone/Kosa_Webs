@@ -1,0 +1,23 @@
+package web.servlet.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import web.servlet.model.MemberDAOImpl;
+
+public class IdExistController implements Controller {
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id").trim();
+		
+		try {
+			boolean flag = MemberDAOImpl.getInstance().idExist(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
+	}
+
+}

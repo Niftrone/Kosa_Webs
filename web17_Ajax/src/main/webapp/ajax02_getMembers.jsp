@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    $(function() {
+        // Set을 사용하여 중복을 피할 수 있음
+        var printedIds = new Set();  // Set을 사용하여 중복을 제거
+
+        $('#AjaxBtn').on('click', function(){
+            let id = $('#userId').val();
+            console.log("ID 값: " + id); 
+            
+            $.ajax({
+                // 요청
+                type: 'post',
+                url: './members.json',
+                data: { "id": id },
+                // 응답
+                success: function(result) {
+                    console.log(result); // 응답 내용 확인
+                    if(result && result.members) {
+                        let members = result.members;
+                        $.each(members, function(index, item){
+                            // 중복된 id는 출력하지 않음
+                            if (!printedIds.has(item.id)) {  // 이미 출력된 id인지 확인
+                                printedIds.add(item.id);  // 출력된 id를 Set에 추가
+                                $('#resultView').append("<h3><font color='crimson'>" + item.id + "</font></h3>");
+                            }
+                        });
+                    } else {
+                        alert("No members data found.");
+                    }
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <h3>Form에 입력된 값을 서버로 보내고 서버에서 보낸 데이터를 가지고 페이지 부분 갱신</h3>
+    ID <input type="text" name="userId" id="userId"/>
+    <input type="button" value="AjaxBtn" id="AjaxBtn"/>
+    <div id="resultView"></div>
+</body>
+</html>

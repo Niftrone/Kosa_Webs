@@ -1,0 +1,11 @@
+INDEX VERSION 1.134
+C:\KosaEdu\work05_web2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1809072141.index
+\Workshop08\src\main\java
+C:\KosaEdu\work05_web2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2260057013.index
+\web16_CafeMember\src\main\java
+C:\KosaEdu\work05_web2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2799562764.index
+\web17_Ajax\src\main\java
+C:\KosaEdu\work05_web2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3047148294.index
+\web17_Azax\src\main\java
+C:\KosaEdu\work05_web2\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3194821366.index
+\Workshop08\src\main\java

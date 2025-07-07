@@ -42,10 +42,12 @@ public class DispatcherServlet extends HttpServlet {
 		String path = "index.jsp";
 		try {
 			mv=controller.handleRequest(request, response);
-			path = mv.getPath();
 			
-			if(mv.isRedirect()) response.sendRedirect(path);
-			else request.getRequestDispatcher(path).forward(request, response);
+			if(mv != null) {
+				path = mv.getPath();
+				if(mv.isRedirect()) response.sendRedirect(path);
+				else request.getRequestDispatcher(path).forward(request, response);
+			}
 		}catch(Exception e) {
 			System.out.println(e);
 		}
