@@ -37,9 +37,12 @@
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
     	$(function(){
-    		$(".detail-link").on('click', function(e){
-    			e.preventDefault();
-    			const isbn = $(this).data('isbn');
+    		$(".detail-link").on('mouseenter', function(e){
+    	        const $this = $(this);
+    	        const isbn = $this.data('isbn');
+
+    	        // 이미 데이터가 로드된 경우 중복 요청 방지
+    	        if ($this.data('loaded')) return;
     			
                 $.ajax({
                     type:"get",
@@ -50,7 +53,6 @@
                     },
                     dataType: "Json",
                     success:function(book){
-                        	alert(book.title)
                             const html = `
                                 <font color=crimson>
                                     Book 상세보기 출력 - 제목 : \${book.title}, 출판사 : \${book.publisher}, 저자 : \${book.author}
@@ -80,23 +82,32 @@
         <input type="text" name="searchText">
         <input type="submit" value="검색">
     </form>
-    <table border="1">
-        <tr>
-            <th>도서번호</th>
-            <th>도서명</th>
-            <th>도서분류</th>
-            <th>저자</th>
-        </tr>
-        
-        <c:forEach items="${list}" var="book">
-			<tr>
-				<td>${book.isbn}</td>
-				<td><a href="#" class="detail-link" data-isbn="${book.isbn}">${book.title}</a></td>
-				<td>${book.catalogue}</td>
-				<td>${book.author}</td>
-			</tr>
-		</c:forEach>
-    </table>
+    <c:choose>
+        <c:when test="${empty list}">
+            <h2>등록된 도서가 없습니다.</h2>
+        </c:when>
+        <c:otherwise>
+            <table border="1">
+                <tr>
+                    <th>도서번호</th>
+                    <th>도서명</th>
+                    <th>도서분류</th>
+                    <th>저자</th>
+                </tr>
+            
+                <c:forEach items="${list}" var="book">
+                    <tr>
+                        <td>${book.isbn}</td>
+                        <td><a href="#" class="detail-link" data-isbn="${book.isbn}">${book.title}</a></td>
+                        <td>${book.catalogue}</td>
+                        <td>${book.author}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:otherwise>
+    </c:choose>
+
+
     <div id="detailResult"></div>
     <div>
     <a href="./book/Book.html">도서 등록</a>
